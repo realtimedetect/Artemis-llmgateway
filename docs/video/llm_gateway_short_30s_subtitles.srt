@@ -1,0 +1,24 @@
+1
+00:00:00,000 --> 00:00:06,000
+Enterprise teams are scaling GenAI, but direct model integrations create risk:
+fragmented security, unpredictable cost, and vendor lock-in.
+
+2
+00:00:06,000 --> 00:00:11,500
+llm_gateway solves this with one control plane
+in front of every LLM provider.
+
+3
+00:00:11,500 --> 00:00:18,500
+With a single endpoint, teams get policy-based routing,
+automatic failover, and scoped API key governance.
+
+4
+00:00:18,500 --> 00:00:24,500
+Plus Redis caching, live cost tracking,
+and full audit visibility.
+
+5
+00:00:24,500 --> 00:00:30,000
+That means faster delivery, better reliability,
+and measurable cost control across AI workloads.

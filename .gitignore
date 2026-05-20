@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+.next/
+out/
+dist/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Go build artifacts
+backend/server
+backend/tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker volumes (if bind-mounted locally)
+database/data/
+
+# Logs
+*.log
+npm-debug.log*

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
+  "handler": "Microsoft.Azure.CreateUIDef",
+  "version": "0.1.2-preview",
+  "parameters": {
+    "basics": [
+      {
+        "name": "storageAccountNamePrefix",
+        "type": "Microsoft.Common.TextBox",
+        "label": "Storage account name prefix",
+        "defaultValue": "llmgw",
+        "toolTip": "Enter a short prefix. A unique suffix is automatically added.",
+        "constraints": {
+          "required": true,
+          "regex": "^[a-z0-9]{3,11}$",
+          "validationMessage": "Use 3-11 lowercase letters or numbers."
+        }
+      },
+      {
+        "name": "storageSku",
+        "type": "Microsoft.Common.DropDown",
+        "label": "Storage SKU",
+        "defaultValue": "Standard_LRS",
+        "toolTip": "Choose the storage redundancy option.",
+        "constraints": {
+          "allowedValues": [
+            {
+              "label": "Standard Locally Redundant Storage (LRS)",
+              "value": "Standard_LRS"
+            },
+            {
+              "label": "Standard Geo-Redundant Storage (GRS)",
+              "value": "Standard_GRS"
+            },
+            {
+              "label": "Standard Read-Access Geo-Redundant Storage (RA-GRS)",
+              "value": "Standard_RAGRS"
+            }
+          ],
+          "required": true
+        }
+      }
+    ],
+    "steps": [],
+    "outputs": {
+      "storageAccountNamePrefix": "[basics('storageAccountNamePrefix')]",
+      "storageSku": "[basics('storageSku')]",
+      "location": "[location()]"
+    }
+  }
+}

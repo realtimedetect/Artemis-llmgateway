@@ -1,0 +1,69 @@
+services:
+  db:
+    image: mariadb:11.3
+    container_name: llm_gatway_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootsecret}
+      MARIADB_DATABASE: ${DB_NAME:-llm_gatway}
+      MARIADB_USER: ${DB_USER:-gatway}
+      MARIADB_PASSWORD: ${DB_PASSWORD:-gatwaysecret}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: llm_gatway_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: llm_gatway_backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-llm_gatway}
+      DB_USER: ${DB_USER:-gatway}
+      DB_PASSWORD: ${DB_PASSWORD:-gatwaysecret}
+      JWT_SECRET: ${JWT_SECRET:-change_me_in_production}
+      DEFAULT_ADMIN_ENABLED: ${DEFAULT_ADMIN_ENABLED:-true}
+      DEFAULT_ADMIN_ID: ${DEFAULT_ADMIN_ID:-00000000-0000-0000-0000-000000000001}
+      DEFAULT_ADMIN_EMAIL: ${DEFAULT_ADMIN_EMAIL:-admin@llm-gatway.local}
+      DEFAULT_ADMIN_PASSWORD_BCRYPT: ${DEFAULT_ADMIN_PASSWORD_BCRYPT}
+      PORT: 8080
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost:3000}
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: llm_gatway_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8080}
+    ports:
+      - "3000:3000"
+
+volumes:
+  mariadb_data:
