@@ -776,6 +776,8 @@ func (h *Handler) ListProviders(w http.ResponseWriter, r *http.Request) {
 
 // CreateProvider adds a new LLM provider.
 func (h *Handler) CreateProvider(w http.ResponseWriter, r *http.Request) {
+	const singleLLMLicenseMsg = "Only one LLM can be configured in this plan. To configure more than one LLM, get the license or contact pv@realtimedetect.com"
+
 	var body struct {
 		Name       string `json:"name"`
 		BaseURL    string `json:"base_url"`
@@ -804,6 +806,17 @@ func (h *Handler) CreateProvider(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "invalid or disallowed base_url: must be http/https and not an internal address"})
 		return
 	}
+
+	var providerCount int
+	if err := h.db.QueryRowContext(r.Context(), `SELECT COUNT(*) FROM providers`).Scan(&providerCount); err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "database error"})
+		return
+	}
+	if providerCount >= 1 {
+		writeJSON(w, http.StatusForbidden, map[string]string{"error": singleLLMLicenseMsg})
+		return
+	}
+
 	enabled := true
 	if body.Enabled != nil {
 		enabled = *body.Enabled

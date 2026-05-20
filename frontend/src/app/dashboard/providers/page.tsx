@@ -50,11 +50,14 @@ const EMPTY: Omit<Provider, 'id'> & { api_key: string } = {
 };
 
 export default function ProvidersPage() {
+  const singleLLMLicenseMsg = 'Only one LLM can be configured in this plan. To configure more than one LLM, get the license or contact pv@realtimedetect.com';
+
   const [providers, setProviders] = useState<Provider[]>([]);
   const [health, setHealth] = useState<Record<string, ProviderHealth>>({});
   const [keyPoolStats, setKeyPoolStats] = useState<Record<string, ProviderKeyPoolStat>>({});
   const [form, setForm] = useState({ ...EMPTY });
   const [extraKeysText, setExtraKeysText] = useState('');
+  const [formError, setFormError] = useState('');
   const [autoRefresh, setAutoRefresh] = useState(false);
   const [refreshSeconds, setRefreshSeconds] = useState<3 | 4 | 5>(4);
   const [loading, setLoading] = useState(false);
@@ -86,6 +89,7 @@ export default function ProvidersPage() {
 
   async function createProvider() {
     if (!form.name || !form.base_url || !form.api_key) return;
+    setFormError('');
     const apiKeys = extraKeysText
       .split(/\r?\n/)
       .map((line) => line.trim())
@@ -96,6 +100,9 @@ export default function ProvidersPage() {
       setForm({ ...EMPTY });
       setExtraKeysText('');
       fetchProviders();
+    } catch (e: unknown) {
+      const msg = (e as { response?: { data?: { error?: string } } })?.response?.data?.error;
+      setFormError(msg ?? 'Failed to add provider.');
     } finally {
       setLoading(false);
     }
@@ -117,6 +124,16 @@ export default function ProvidersPage() {
 
       <div className="bg-white rounded-xl p-5 shadow-sm border border-slate-100 space-y-3">
         <h3 className="text-sm font-medium text-slate-700">Add Provider</h3>
+        {providers.length >= 1 && (
+          <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+            {singleLLMLicenseMsg}
+          </div>
+        )}
+        {formError && (
+          <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
+            {formError}
+          </div>
+        )}
         <select
           value={form.adapter}
           onChange={(e) => setForm({ ...form, adapter: e.target.value as Provider['adapter'] })}
@@ -156,7 +173,7 @@ export default function ProvidersPage() {
         />
         <button
           onClick={createProvider}
-          disabled={loading}
+          disabled={loading || providers.length >= 1}
           className="flex items-center gap-1.5 px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium rounded-lg transition disabled:opacity-50"
         >
           <Plus size={16} /> Add Provider
