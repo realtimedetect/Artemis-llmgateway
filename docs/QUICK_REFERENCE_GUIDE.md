@@ -278,8 +278,8 @@ curl -H "Authorization: Bearer YOUR_EXACT_KEY" ...
 
 | Issue | Email | Response |
 |-------|-------|----------|
-| Technical Problem | tech-support@llm-gateway.com | 2 hours |
-| Billing Question | support@llm-gateway.com | 24 hours |
+| Technical Problem | pv@realtimedetect.com | 2 hours |
+| Billing Question | pv@realtimedetect.com | 24 hours |
 | Security Issue | security@llm-gateway.com | 1 hour |
 | Account Issue | admin@llm-gateway.com | 24 hours |
 

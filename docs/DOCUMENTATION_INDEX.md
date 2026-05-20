@@ -44,6 +44,17 @@ This comprehensive documentation suite provides everything you need to understan
 - wkhtmltopdf
 - CI/CD integration examples
 
+### 🚀 I want Deployment Runbooks
+👉 **Server install:** [SERVER_IMPLEMENTATION_GUIDE.md](SERVER_IMPLEMENTATION_GUIDE.md)
+- Linux server prerequisites
+- Docker Compose deployment steps
+- TLS, firewall, backups, upgrade procedure
+
+👉 **OpenShift (OCP):** [OCP_DOCKER_DEPLOYMENT_GUIDE.md](OCP_DOCKER_DEPLOYMENT_GUIDE.md)
+- Build and push Docker images
+- Deploy with ConfigMap, Secret, Service, Route
+- Validate, rollout updates, and troubleshoot
+
 ---
 
 ## Document Details
@@ -367,15 +378,15 @@ done
 ### Can't find information
 - **Try:** Use Ctrl+F search in documents
 - **Or:** Check table of contents
-- **Ask:** Email support@llm-gateway.com
+- **Ask:** Email pv@realtimedetect.com
 
 ---
 
 ## 📞 Support & Feedback
 
 ### Getting Help
-- **User questions:** support@llm-gateway.com
-- **Technical issues:** tech-support@llm-gateway.com
+- **User questions:** pv@realtimedetect.com
+- **Technical issues:** pv@realtimedetect.com
 - **Documentation errors:** docs@llm-gateway.com
 - **General inquiry:** info@llm-gateway.com
 
@@ -470,6 +481,6 @@ docs/
 
 ---
 
-**For questions or assistance, contact: support@llm-gateway.com**
+**For questions or assistance, contact: pv@realtimedetect.com**
 
 *LLM Gateway © 2026 - All Rights Reserved*

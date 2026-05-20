@@ -19,6 +19,8 @@ Your LLM Gateway documentation suite is now **complete and production-ready**. H
 | **QUICK_REFERENCE_GUIDE.md** | Markdown | 100 KB | 50-75 | Quick lookup guide for common tasks & API examples |
 | **API_REFERENCE.md** | Markdown | 150 KB | 100-125 | Complete API endpoint reference for developers |
 | **PDF_GENERATION_GUIDE.md** | Markdown | 80 KB | 50-60 | How to generate & distribute PDFs |
+| **SERVER_IMPLEMENTATION_GUIDE.md** | Markdown | ~30 KB | 20-30 | Step-by-step Linux server deployment runbook |
+| **OCP_DOCKER_DEPLOYMENT_GUIDE.md** | Markdown | ~40 KB | 25-35 | Step-by-step OpenShift deployment using Docker images |
 | **DOCUMENTATION_INDEX.md** | Markdown | 50 KB | 30-40 | Overview & navigation guide |
 | **MANIFEST.md** | Markdown | 60 KB | 40-50 | Complete metadata & specifications |
 | **convert-to-pdf.ps1** | PowerShell | 8 KB | - | Automation script for PDF generation |
@@ -559,4 +561,4 @@ Your LLM Gateway documentation is now complete and ready for:
 
 ---
 
-*For questions or support, contact: support@llm-gateway.com*
+*For questions or support, contact: pv@realtimedetect.com*

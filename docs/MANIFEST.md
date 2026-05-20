@@ -20,6 +20,8 @@ docs/
 ├── QUICK_REFERENCE_GUIDE.md ......................... Quick lookup reference (~50 pages)
 ├── API_REFERENCE.md ................................ API endpoint reference (~100 pages)
 ├── PDF_GENERATION_GUIDE.md .......................... How to generate PDFs (~50 pages)
+├── SERVER_IMPLEMENTATION_GUIDE.md .................... Linux server deployment runbook
+├── OCP_DOCKER_DEPLOYMENT_GUIDE.md .................... OpenShift deployment runbook
 ├── DOCUMENTATION_INDEX.md ........................... Overview and navigation guide
 ├── MANIFEST.md (this file) .......................... Complete manifest and metadata
 └── convert-to-pdf.ps1 .............................. PowerShell automation script
@@ -409,7 +411,7 @@ Usage agreement:
 - **Versioning:** Semantic versioning
 
 ### Getting Help
-- **Questions:** support@llm-gateway.com
+- **Questions:** pv@realtimedetect.com
 - **Errors:** docs@llm-gateway.com
 - **Feedback:** improvement-feedback@llm-gateway.com
 - **Emergency:** security@llm-gateway.com (security issues)
@@ -491,9 +493,9 @@ When reporting documentation issues, include:
 
 | Role | Email | Response Time |
 |------|-------|----------------|
-| Technical Support | tech-support@llm-gateway.com | 2 hours |
+| Technical Support | pv@realtimedetect.com | 2 hours |
 | Documentation | docs@llm-gateway.com | 24 hours |
-| General Support | support@llm-gateway.com | 24 hours |
+| General Support | pv@realtimedetect.com | 24 hours |
 | Security Issues | security@llm-gateway.com | 1 hour |
 
 ---

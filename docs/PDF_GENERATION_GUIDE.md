@@ -353,7 +353,7 @@ For issues with PDF generation:
 2. Verify HTML file integrity
 3. Update your PDF generation tool
 4. Try alternative method from this guide
-5. Contact support@llm-gateway.com with details
+5. Contact pv@realtimedetect.com with details
 
 ---
 
